@@ -1,0 +1,23 @@
+{
+  "vendor": "Meyer-Miles",
+  "invoice_number": "INV-2911",
+  "invoice_date": "2026-06-20",
+  "due_date": "2026-07-08",
+  "subtotal": "1115.93",
+  "tax": "89.27",
+  "total": "1205.20",
+  "line_items": [
+    {
+      "description": "Implement Mission-Critical Communities",
+      "quantity": "4",
+      "unit_price": "41.72",
+      "amount": "166.88"
+    },
+    {
+      "description": "Synergize Wireless Web Services",
+      "quantity": "5",
+      "unit_price": "189.81",
+      "amount": "949.05"
+    }
+  ]
+}

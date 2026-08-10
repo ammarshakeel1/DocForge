@@ -1,0 +1,35 @@
+# Env / secrets
+.env
+.env.local
+.env.*.local
+apps/web/.env.local
+!.env.example
+!apps/web/.env.local.example
+
+# Local notes (not part of the product)
+docforge mvp
+**/docforge mvp
+
+# Python
+apps/api/.venv/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+apps/web/node_modules/
+apps/web/.next/
+apps/web/out/
+apps/web/*.tsbuildinfo
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+.cursor/
+
+# Generated
+*.log

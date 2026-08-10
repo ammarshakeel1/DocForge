@@ -1,0 +1,23 @@
+{
+  "vendor": "Butler-Scott",
+  "invoice_number": "INV-5967",
+  "invoice_date": "2026-06-29",
+  "due_date": "2026-07-04",
+  "subtotal": "260.98",
+  "tax": "20.88",
+  "total": "281.86",
+  "line_items": [
+    {
+      "description": "Monetize Robust E-Business",
+      "quantity": "2",
+      "unit_price": "84.15",
+      "amount": "168.30"
+    },
+    {
+      "description": "Generate B2C E-Tailers",
+      "quantity": "2",
+      "unit_price": "46.34",
+      "amount": "92.68"
+    }
+  ]
+}

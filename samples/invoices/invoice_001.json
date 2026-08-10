@@ -1,0 +1,23 @@
+{
+  "vendor": "Mitchell and Sons",
+  "invoice_number": "INV-8578",
+  "invoice_date": "2026-07-01",
+  "due_date": "2026-08-18",
+  "subtotal": "2441.33",
+  "tax": "195.31",
+  "total": "2636.64",
+  "line_items": [
+    {
+      "description": "Expedite Vertical Mindshare",
+      "quantity": "8",
+      "unit_price": "165.63",
+      "amount": "1325.04"
+    },
+    {
+      "description": "Re-Intermediate User-Centric Interfaces",
+      "quantity": "7",
+      "unit_price": "159.47",
+      "amount": "1116.29"
+    }
+  ]
+}
