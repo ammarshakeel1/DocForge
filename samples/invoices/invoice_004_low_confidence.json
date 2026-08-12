@@ -1,0 +1,30 @@
+{
+  "vendor": "Summit Office Supplies",
+  "invoice_number": "INV-4417",
+  "invoice_date": "2026-07-15",
+  "due_date": "2026-08-14",
+  "subtotal": "2441.33",
+  "tax": "195.31",
+  "total": "2700.00",
+  "line_items": [
+    {
+      "description": "Consulting Services",
+      "quantity": "12",
+      "unit_price": "145.00",
+      "amount": "1740.00"
+    },
+    {
+      "description": "Data Entry Support",
+      "quantity": "8",
+      "unit_price": "62.50",
+      "amount": "500.00"
+    },
+    {
+      "description": "Document Scanning",
+      "quantity": "1",
+      "unit_price": "201.33",
+      "amount": "201.33"
+    }
+  ],
+  "expected_issue": "totals_mismatch"
+}

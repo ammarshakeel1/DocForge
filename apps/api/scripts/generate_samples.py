@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Generate 3 synthetic invoice PDFs + ground-truth JSON. Never use real client docs."""
+"""Generate synthetic invoice PDFs + ground-truth JSON. Never use real client docs.
+
+invoice_004_low_confidence is fully hardcoded (no faker) so the totals mismatch
+stays byte-for-byte deterministic across runs.
+"""
 
 from __future__ import annotations
 
@@ -65,6 +69,48 @@ def build_invoice(seed_offset: int, messy: bool = False) -> dict:
             "address": fake.address().replace("\n", ", "),
         },
         "messy": messy,
+    }
+
+
+def build_low_confidence_invoice() -> dict:
+    """Fixed values where subtotal + tax != total (expected 2636.64, printed 2700.00).
+
+    Everything else is present and well-formed so only the totals validation
+    can flag low-confidence fields.
+    """
+    return {
+        "vendor": "Summit Office Supplies",
+        "invoice_number": "INV-4417",
+        "invoice_date": "2026-07-15",
+        "due_date": "2026-08-14",
+        "subtotal": "2441.33",
+        "tax": "195.31",
+        "total": "2700.00",
+        "line_items": [
+            {
+                "description": "Consulting Services",
+                "quantity": "12",
+                "unit_price": "145.00",
+                "amount": "1740.00",
+            },
+            {
+                "description": "Data Entry Support",
+                "quantity": "8",
+                "unit_price": "62.50",
+                "amount": "500.00",
+            },
+            {
+                "description": "Document Scanning",
+                "quantity": "1",
+                "unit_price": "201.33",
+                "amount": "201.33",
+            },
+        ],
+        "bill_to": {
+            "name": "Northstar Accounting",
+            "address": "512 Harbor Lane, Suite 300, Portland, OR 97205",
+        },
+        "messy": False,
     }
 
 
@@ -198,7 +244,25 @@ def main() -> int:
         truth_path.write_text(json.dumps(truth, indent=2) + "\n", encoding="utf-8")
         print(f"Wrote {pdf_path.relative_to(ROOT)} and {truth_path.relative_to(ROOT)}")
 
-    print("Done. Generated 3 synthetic invoices (no real client documents).")
+    low_conf = build_low_confidence_invoice()
+    pdf_path = OUT_DIR / "invoice_004_low_confidence.pdf"
+    truth_path = OUT_DIR / "invoice_004_low_confidence.json"
+    draw_clean_invoice(pdf_path, low_conf)
+    truth = {
+        "vendor": low_conf["vendor"],
+        "invoice_number": low_conf["invoice_number"],
+        "invoice_date": low_conf["invoice_date"],
+        "due_date": low_conf["due_date"],
+        "subtotal": low_conf["subtotal"],
+        "tax": low_conf["tax"],
+        "total": low_conf["total"],
+        "line_items": low_conf["line_items"],
+        "expected_issue": "totals_mismatch",
+    }
+    truth_path.write_text(json.dumps(truth, indent=2) + "\n", encoding="utf-8")
+    print(f"Wrote {pdf_path.relative_to(ROOT)} and {truth_path.relative_to(ROOT)}")
+
+    print("Done. Generated 4 synthetic invoices (no real client documents).")
     return 0
 
 
