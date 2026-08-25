@@ -1,6 +1,5 @@
 -- DocForge AI v0.1 schema
 -- Storage bucket `invoices` must be PRIVATE. Files are served only via the API
--- (signed URL or streamed PDF). Never put SUPABASE_SERVICE_ROLE_KEY in the web app.
 
 create table if not exists documents (
   id uuid primary key default gen_random_uuid(),
@@ -37,3 +36,9 @@ create table if not exists review_events (
 
 create index if not exists review_events_document_id_idx
   on review_events(document_id);
+
+-- RLS enabled with no public policies: service-role bypasses RLS, so the API
+-- keeps working while anon/authenticated clients get no access (local demo only).
+alter table documents enable row level security;
+alter table extracted_fields enable row level security;
+alter table review_events enable row level security;
